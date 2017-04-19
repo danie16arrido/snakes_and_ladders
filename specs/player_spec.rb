@@ -1,11 +1,14 @@
 require('minitest/autorun')
 require('minitest/emoji')
 require_relative('../player.rb')
+require_relative('../board.rb')
+
 
 class TestPlayer < MiniTest::Test
   
   def setup
-    @player = Player.new("John")
+    @board = Board.new(12)
+    @player = Player.new("John", @board.portals)
   end
 
   def test_can_create_player
@@ -26,12 +29,23 @@ class TestPlayer < MiniTest::Test
 
   def test_player_can_move
     @player.move(3)
-    assert_equal(3, @player.position_at)
+    @player.move(5)
+    assert_equal(8, @player.position_at)
   end
 
-  def test_
+  def test_winner
+    @player.move(12) 
+    @player.check_winner(@board.size)
+    actual = @player.win
+    expected = true
+    assert_equal(expected, actual)
+  end
 
+  def test_ladder_move
+    @player.move(2, @board.portals)
 
+    assert_equal(6, @player.position_at)
+  end
 
 
 

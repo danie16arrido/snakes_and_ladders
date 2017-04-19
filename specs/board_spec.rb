@@ -12,8 +12,21 @@ class TestBoard < MiniTest::Test
     assert_equal(Board, @board.class)
   end
 
+  def test_create_squares_array
+    new_board = Board.new(2)
+    assert_equal([0,1], new_board.squares)
+  end
 
+  def test_create_portals
+    assert_equal([], @board.portals)
+  end
 
+  def test_add_portals_to_board
+    a_portal = {2 => 6}
+    @board.add_portal(a_portal)
+    assert_equal([a_portal],@board.portals)
+
+  end
 
 
 
