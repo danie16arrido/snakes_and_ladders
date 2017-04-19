@@ -32,19 +32,4 @@ class TestBoard < MiniTest::Test
     assert_equal(6, board.squares[0][1])
   end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end

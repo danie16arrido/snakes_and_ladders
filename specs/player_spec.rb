@@ -8,7 +8,7 @@ class TestPlayer < MiniTest::Test
   
   def setup
     @board = Board.new(12)
-    @player = Player.new("John", @board.portals)
+    @player = Player.new("John")
   end
 
   def test_can_create_player
@@ -20,7 +20,7 @@ class TestPlayer < MiniTest::Test
   end
 
   def test_start_position
-    assert_equal(0, @player.position_at)
+    assert_equal(1, @player.position_at)
   end
 
   def test_starting_status
@@ -28,34 +28,17 @@ class TestPlayer < MiniTest::Test
   end
 
   def test_player_can_move
-    @player.move(3)
-    @player.move(5)
-    assert_equal(8, @player.position_at)
+    @player.move(3, @board.squares)
+    assert_equal(4, @player.position_at)
+    @player.move(3, @board.squares)
+    assert_equal(7, @player.position_at)
   end
 
-  def test_winner
-    @player.move(12) 
-    @player.check_winner(@board.size)
-    actual = @player.win
-    expected = true
-    assert_equal(expected, actual)
-  end
-
-  def test_ladder_move
-    @player.move(2, @board.portals)
+  def test_move_to_a_portal
+    @board.add_portal(3,6)
+    @player.move(2, @board.squares)
 
     assert_equal(6, @player.position_at)
   end
-
-
-
-
-
-
-
-
-
-
-
 
 end
