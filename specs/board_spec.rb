@@ -5,28 +5,38 @@ require_relative('../board.rb')
 class TestBoard < MiniTest::Test
 
   def setup
-    @board = Board.new(12)
-  end
+    @board = Board.new(2)
+  end 
 
   def test_can_create_board
-    assert_equal(Board, @board.class)
+    assert_equal(Board, @board.class) 
   end
 
-  def test_create_squares_array
-    new_board = Board.new(2)
-    assert_equal([0,1], new_board.squares)
+  def test_board_has_size
+    assert_equal(2, @board.size)  
   end
 
-  def test_create_portals
-    assert_equal([], @board.portals)
+  def Xtest_create_squares_with_size
+    arr = [[nil, nil, nil, nil, nil, nil], [nil, nil, nil, nil, nil, nil]]
+    assert_equal(arr, @board.squares)
   end
 
-  def test_add_portals_to_board
-    a_portal = {2 => 6}
-    @board.add_portal(a_portal)
-    assert_equal([a_portal],@board.portals)
-
+  def test_populate_array
+    board = Board.new(12)
+    assert_equal(12, board.squares[5][5])
   end
+
+  def test_add_portal
+    board = Board.new(12)
+    board.add_portal(3,6)
+    assert_equal(6, board.squares[0][1])
+  end
+
+
+
+
+
+
 
 
 
